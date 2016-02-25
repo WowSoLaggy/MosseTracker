@@ -1,22 +1,51 @@
-// The following ifdef block is the standard way of creating macros which make exporting 
-// from a DLL simpler. All files within this DLL are compiled with the MOSSETRACKER_EXPORTS
-// symbol defined on the command line. This symbol should not be defined on any project
-// that uses this DLL. This way any other project whose source files include this file see 
-// MOSSETRACKER_API functions as being imported from a DLL, whereas this DLL sees symbols
-// defined with this macro as being exported.
-#ifdef MOSSETRACKER_EXPORTS
-#define MOSSETRACKER_API __declspec(dllexport)
-#else
-#define MOSSETRACKER_API __declspec(dllimport)
-#endif
+#pragma once
 
-// This class is exported from the MosseTracker.dll
-class MOSSETRACKER_API CMosseTracker {
+#ifndef MOSSETRACKER_H
+#define MOSSETRACKER_H
+
+
+#include "Fft.h"
+
+
+class MosseTracker
+{
 public:
-	CMosseTracker(void);
-	// TODO: add your methods here.
+
+	void Init(unsigned char *pImageR, unsigned char *pImageG, unsigned char *pImageB, int pStride, int &pX, int &pY, int &pW, int &pH);
+	void OnFrame(unsigned char *pImageR, unsigned char *pImageG, unsigned char *pImageB, int pStride, int &pX, int &pY, int &pW, int &pH);
+	void Dispose();
+
+private:
+
+	Fft m_fft;
+	int m_rectSize;
+
+	std::vector<float> m_G_re;
+	std::vector<float> m_G_im;
+
+	std::vector<float> m_F_re;
+	std::vector<float> m_F_im;
+
+	std::vector<float> m_A_re;
+	std::vector<float> m_A_im;
+
+	std::vector<float> m_B_re;
+	//std::vector<float> m_B_im;	// Not used because will always be zero-filled
+
+	std::vector<float> m_H_re;
+	std::vector<float> m_H_im;
+
+	std::vector<float> m_R_re;		// Response
+	std::vector<float> m_R_im;
+
+	std::vector<float> m_gray;		// Temp array to store grayscale image
+
+	void GetGrayscale(unsigned char *pImageR, unsigned char *pImageG, unsigned char *pImageB, int pStride, int &pX, int &pY, int &pW, int &pH);
+	void GenerateAndFourierG(int &pX, int &pY, int &pW, int &pH);
+	void CopyAndFourierF();
+	void CalcH_noAcc();
+	void CalcH();
 };
 
-extern MOSSETRACKER_API int nMosseTracker;
 
-MOSSETRACKER_API int fnMosseTracker(void);
+#endif // MOSSETRACKER_H

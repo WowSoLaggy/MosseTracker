@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{466263d8-d538-45fd-a8a3-2fdff2c03b40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\TestFromFile">
+      <UniqueIdentifier>{9e50aab4-e8dc-4b2a-8b2c-e1ab38208e93}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="TestFromFile.h">
+      <Filter>src\TestFromFile</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="startup.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="TestFromFile.cpp">
+      <Filter>src\TestFromFile</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

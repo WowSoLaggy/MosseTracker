@@ -11,13 +11,15 @@ class MosseTracker
 {
 public:
 
-	void Init(const unsigned char *pScan0, int pStride, int pX, int pY, int pW, int pH);
+	void Init(const unsigned char *pScan0, int pStride, int pX, int pY, int pW, int pH, float pLearnRate);
 	void OnFrame(const unsigned char *pScan0, int pStride, int &pX, int &pY, int &pW, int &pH);
 
 private:
 
 	Fft m_fft;
 	int m_rectSize;
+	float m_learnRate;
+	float m_learnRateInv;
 
 	std::vector<float> m_G_re;
 	std::vector<float> m_G_im;

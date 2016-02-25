@@ -66,17 +66,14 @@ void MosseTracker::CalcH_noAcc()
 
 void MosseTracker::CalcH()
 {
-	const float alpha = 0.08f;
-	const float alphaPrev = 1 - alpha;
-
 	for (int i = 0; i < m_rectSize; ++i)
 	{
-		// A = (G* * F*) * alpha + A * (1 - alpha)
-		m_A_re[i] = (m_G_re[i] * m_F_re[i] + m_G_im[i] * m_F_im[i]) * alpha + m_A_re[i] * alphaPrev;
-		m_A_im[i] = (-m_G_re[i] * m_F_im[i] + m_G_im[i] * m_F_re[i]) * alpha + m_A_im[i] * alphaPrev;
+		// A = (G* * F*) * learnRate + A * (1 - learnRate)
+		m_A_re[i] = (m_G_re[i] * m_F_re[i] + m_G_im[i] * m_F_im[i]) * m_learnRate + m_A_re[i] * m_learnRateInv;
+		m_A_im[i] = (-m_G_re[i] * m_F_im[i] + m_G_im[i] * m_F_re[i]) * m_learnRate + m_A_im[i] * m_learnRateInv;
 
-		// B = (F * F*) * alpha + B * (1 - alpha)
-		m_B_re[i] = (m_F_re[i] * m_F_re[i] + m_F_im[i] * m_F_im[i]) * alpha + m_B_re[i] * alphaPrev;
+		// B = (F * F*) * learnRate + B * (1 - learnRate)
+		m_B_re[i] = (m_F_re[i] * m_F_re[i] + m_F_im[i] * m_F_im[i]) * m_learnRate + m_B_re[i] * m_learnRateInv;
 
 		// H = A / B
 		m_H_re[i] = m_A_re[i] / m_B_re[i];

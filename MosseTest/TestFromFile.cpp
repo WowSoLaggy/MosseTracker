@@ -14,6 +14,8 @@ void TestFromFile::Run(std::string pWorkDir, int pZeros, int pX, int pY, int pW,
 	int rectW = pW;
 	int rectH = pH;
 
+	float learnRate = 0.08f;	// The Mosse Tracker learning rate. Read the paper for more information
+
 	// For FPS counting
 	double dt = 0;
 	double dtAcc = 0;
@@ -38,7 +40,7 @@ void TestFromFile::Run(std::string pWorkDir, int pZeros, int pX, int pY, int pW,
 
 		// Call tracker
 		if (curFrame == 0)
-			Mosse_Init(imGray.ptr(), (int)imGray.step, rectX, rectY, rectW, rectH);
+			Mosse_Init(imGray.ptr(), (int)imGray.step, rectX, rectY, rectW, rectH, learnRate);
 		else
 		{
 			QueryPerformanceCounter(&accTimePrecStart);

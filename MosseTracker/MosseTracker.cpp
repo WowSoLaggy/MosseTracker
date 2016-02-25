@@ -2,13 +2,16 @@
 #include "MosseTracker.h"
 
 
-void MosseTracker::Init(const unsigned char *pScan0, int pStride, int pX, int pY, int pW, int pH)
+void MosseTracker::Init(const unsigned char *pScan0, int pStride, int pX, int pY, int pW, int pH, float pLearnRate)
 {
 	// Initialization and memory allocation
 
 	m_rectSize = pW * pH;
 	int logN = (int)(log2(m_rectSize) + 0.5);
 	m_fft.Init(logN);
+
+	m_learnRate = pLearnRate;
+	m_learnRateInv = 1 - m_learnRate;
 
 	m_G_re.resize(m_rectSize, 0);
 	m_G_im.resize(m_rectSize, 0);

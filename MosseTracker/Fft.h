@@ -1,3 +1,11 @@
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// Module:		FFT
+// Authors:		Miroslav Voinarovsky, Anton Egorov
+// Description:	Fast Fourier Transformtaion is based on the
+//				freeware algorythm written by Miroslav Voinarovsky
+//				with insignificant modifications
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 #pragma once
 
 #ifndef FFT_H

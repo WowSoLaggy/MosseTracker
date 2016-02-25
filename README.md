@@ -28,6 +28,7 @@ FPS is calculated via QueryPerformanceCounter.
 2. MosseTest (exe)
   1. Tests
     1. TestFromFile - runs MosseTracker test with the images loaded from files
+	2. TestOneFrame	- runs test with only one frame (and one for the initialization). It processes this frame 1000 times and counts the total FPS
 
 
 Anton Egorov, 2016 dohxehapo@gmail.com

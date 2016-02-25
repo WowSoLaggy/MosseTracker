@@ -7,6 +7,9 @@
     <Filter Include="src\TestFromFile">
       <UniqueIdentifier>{9e50aab4-e8dc-4b2a-8b2c-e1ab38208e93}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\TestOneFrame">
+      <UniqueIdentifier>{f8eb5ef2-e112-4306-8a34-1e70ab325efb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -14,6 +17,9 @@
     </ClInclude>
     <ClInclude Include="TestFromFile.h">
       <Filter>src\TestFromFile</Filter>
+    </ClInclude>
+    <ClInclude Include="TestOneFrame.h">
+      <Filter>src\TestOneFrame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -25,6 +31,9 @@
     </ClCompile>
     <ClCompile Include="TestFromFile.cpp">
       <Filter>src\TestFromFile</Filter>
+    </ClCompile>
+    <ClCompile Include="TestOneFrame.cpp">
+      <Filter>src\TestOneFrame</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

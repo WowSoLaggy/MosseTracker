@@ -18,9 +18,6 @@
     <ClInclude Include="stdafx.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="Mosse_Export.h">
-      <Filter>src\Export</Filter>
-    </ClInclude>
     <ClInclude Include="MosseTracker.h">
       <Filter>src\MosseTracker</Filter>
     </ClInclude>
@@ -30,6 +27,9 @@
     <ClInclude Include="Fft_arrays.h">
       <Filter>src\FFT</Filter>
     </ClInclude>
+    <ClInclude Include="Export\Mosse_Export.h">
+      <Filter>src\Export</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -38,14 +38,17 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="Fft.cpp">
+      <Filter>src\FFT</Filter>
+    </ClCompile>
+    <ClCompile Include="MosseTracker_Misc.cpp">
+      <Filter>src\MosseTracker</Filter>
+    </ClCompile>
     <ClCompile Include="Mosse_Export.cpp">
       <Filter>src\Export</Filter>
     </ClCompile>
     <ClCompile Include="MosseTracker.cpp">
       <Filter>src\MosseTracker</Filter>
-    </ClCompile>
-    <ClCompile Include="Fft.cpp">
-      <Filter>src\FFT</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

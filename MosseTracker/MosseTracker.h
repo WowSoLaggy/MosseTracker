@@ -11,9 +11,8 @@ class MosseTracker
 {
 public:
 
-	void Init(unsigned char *pImageR, unsigned char *pImageG, unsigned char *pImageB, int pStride, int &pX, int &pY, int &pW, int &pH);
-	void OnFrame(unsigned char *pImageR, unsigned char *pImageG, unsigned char *pImageB, int pStride, int &pX, int &pY, int &pW, int &pH);
-	void Dispose();
+	void Init(const unsigned char *pScan0, int pStride, int pX, int pY, int pW, int pH);
+	void OnFrame(const unsigned char *pScan0, int pStride, int &pX, int &pY, int &pW, int &pH);
 
 private:
 
@@ -38,11 +37,8 @@ private:
 	std::vector<float> m_R_re;		// Response
 	std::vector<float> m_R_im;
 
-	std::vector<float> m_gray;		// Temp array to store grayscale image
-
-	void GetGrayscale(unsigned char *pImageR, unsigned char *pImageG, unsigned char *pImageB, int pStride, int &pX, int &pY, int &pW, int &pH);
-	void GenerateAndFourierG(int &pX, int &pY, int &pW, int &pH);
-	void CopyAndFourierF();
+	void GenerateAndFourierG(int pW, int pH);
+	void CopyAndFourierF(const unsigned char *pScan0, int pStride, int pX, int pY, int pW, int pH);
 	void CalcH_noAcc();
 	void CalcH();
 };

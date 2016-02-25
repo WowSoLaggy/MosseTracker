@@ -9,13 +9,18 @@ void TestFromFile::Run(std::string pWorkDir, int pZeros, int pX, int pY, int pW,
 	cv::namedWindow("output");
 	cv::Mat imRgb, imGray;
 
+	int rectX = pX;
+	int rectY = pY;
+	int rectW = pW;
+	int rectH = pH;
+
 	// For FPS counting
 	double dt = 0;
 	double dtAcc = 0;
 	bool firstFps = true;
 	double alpha = 0.05;
-	/*LARGE_INTEGER accTimePrecStart;
-	LARGE_INTEGER accTimePrecEnd;*/
+	LARGE_INTEGER accTimePrecStart;
+	LARGE_INTEGER accTimePrecEnd;
 	LARGE_INTEGER accTimePrecFreq;
 	QueryPerformanceFrequency(&accTimePrecFreq);
 
@@ -32,33 +37,31 @@ void TestFromFile::Run(std::string pWorkDir, int pZeros, int pX, int pY, int pW,
 		cv::cvtColor(imRgb, imGray, CV_RGB2GRAY);	// Convert to graysacle
 
 		// Call tracker
-		//imageInfo.Scan0 = imGray.ptr();
-		//imageInfo.Stride = (int)imGray.step;
-		//if (curFrame == 0)
-		//	mosse.Init(imageInfo, rect);
-		//else
-		//{
-		//	QueryPerformanceCounter(&accTimePrecStart);
+		if (curFrame == 0)
+			Mosse_Init(imGray.ptr(), (int)imGray.step, rectX, rectY, rectW, rectH);
+		else
+		{
+			QueryPerformanceCounter(&accTimePrecStart);
 
-		//	mosse.OnFrame(imageInfo, rect);
+			Mosse_OnFrame(imGray.ptr(), (int)imGray.step, rectX, rectY, rectW, rectH);
 
-		//	// Count FPS
-		//	QueryPerformanceCounter(&accTimePrecEnd);
-		//	dt = (double)(accTimePrecEnd.QuadPart - accTimePrecStart.QuadPart);
-		//	dt /= accTimePrecFreq.QuadPart;
+			// Count FPS
+			QueryPerformanceCounter(&accTimePrecEnd);
+			dt = (double)(accTimePrecEnd.QuadPart - accTimePrecStart.QuadPart);
+			dt /= accTimePrecFreq.QuadPart;
 
-		//	if (firstFps)
-		//	{
-		//		firstFps = false;
-		//		dtAcc = dt;
-		//	}
-		//	else
-		//		dtAcc = dt * alpha + dtAcc * (1 - alpha);
-		//	std::cout << "FPS: " << (1.0 / dtAcc) << std::endl;
-		//}
+			if (firstFps)
+			{
+				firstFps = false;
+				dtAcc = dt;
+			}
+			else
+				dtAcc = dt * alpha + dtAcc * (1 - alpha);
+			std::cout << "FPS: " << (1.0 / dtAcc) << std::endl;
+		}
 
-		//// Draw result
-		//cv::rectangle(imGray, cv::Rect(rect.X, rect.Y, rect.W, rect.H), cv::Scalar(255, 255, 255), 1);
+		// Draw result
+		cv::rectangle(imGray, cv::Rect(rectX, rectY, rectW, rectH), cv::Scalar(255, 255, 255), 1);
 
 		// Show output
 		cv::imshow("output", imGray);

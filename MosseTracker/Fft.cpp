@@ -134,8 +134,8 @@ void Fft::TransformComplement(std::vector<float> &pRe, std::vector<float> &pIm)
 
 	// Reset rotation multiplier array
 
-	m_wStore_re[0] = 1.0;
-	m_wStore_im[0] = 0.0;
+	m_wStore_re[0] = 1.0f;
+	m_wStore_im[0] = 0.0f;
 
 	// Main loop
 

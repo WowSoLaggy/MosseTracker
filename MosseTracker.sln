@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MosseTracker", "MosseTracker\MosseTracker.vcxproj", "{FEC3889A-4035-4072-979A-81D26033C261}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MosseTest", "MosseTest\MosseTest.vcxproj", "{292AD184-B154-4172-BF3C-8298EFDEC894}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FEC3889A-4035-4072-979A-81D26033C261} = {FEC3889A-4035-4072-979A-81D26033C261}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

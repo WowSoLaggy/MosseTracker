@@ -4,6 +4,9 @@
 #define TESTFROMFILE_H
 
 
+#include "Mosse_Export.h"
+
+
 class TestFromFile
 {
 public:

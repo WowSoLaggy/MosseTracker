@@ -117,6 +117,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;MOSSETRACKER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -144,10 +146,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Export\Mosse_Export.h" />
     <ClInclude Include="Fft.h" />
     <ClInclude Include="Fft_arrays.h" />
     <ClInclude Include="MosseTracker.h" />
-    <ClInclude Include="Mosse_Export.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +169,7 @@
     </ClCompile>
     <ClCompile Include="Fft.cpp" />
     <ClCompile Include="MosseTracker.cpp" />
+    <ClCompile Include="MosseTracker_Misc.cpp" />
     <ClCompile Include="Mosse_Export.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

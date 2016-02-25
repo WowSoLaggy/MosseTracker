@@ -6,6 +6,7 @@
 
 #include <windows.h>
 #include <vector>
+#include <memory>
 
 
 #endif // STDAFX_H

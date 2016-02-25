@@ -15,6 +15,7 @@ void TestOneFrame::Run(std::string pWorkDir, int pZeros, int pX, int pY, int pW,
 	int rectH = pH;
 
 	float learnRate = 0.08f;	// The Mosse Tracker learning rate. Read the paper for more information
+	int numToCall = 5000;
 
 	// For FPS counting
 	double dt = 0;
@@ -42,7 +43,7 @@ void TestOneFrame::Run(std::string pWorkDir, int pZeros, int pX, int pY, int pW,
 		{
 			QueryPerformanceCounter(&accTimePrecStart);
 
-			for (int i = 0; i < 1000; i++)
+			for (int i = 0; i < numToCall; i++)
 				Mosse_OnFrame(imGray.ptr(), (int)imGray.step, rectX, rectY, rectW, rectH);
 
 			// Count FPS
@@ -50,7 +51,7 @@ void TestOneFrame::Run(std::string pWorkDir, int pZeros, int pX, int pY, int pW,
 			dt = (double)(accTimePrecEnd.QuadPart - accTimePrecStart.QuadPart);
 			dt /= accTimePrecFreq.QuadPart;
 
-			std::cout << "FPS: " << (1000.0 / dt) << std::endl;
+			std::cout << "FPS: " << ((double)numToCall / dt) << std::endl;
 		}
 
 		// Draw result

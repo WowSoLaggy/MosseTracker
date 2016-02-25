@@ -26,8 +26,7 @@ void MosseTracker::GenerateAndFourierG(int pW, int pH)
 	}
 
 	// G -> G*
-
-	m_fft.TransformDirect(m_G_re, m_G_im);
+	FourierDirect(m_G_re, m_G_im);
 }
 
 void MosseTracker::CopyAndFourierF(const unsigned char *pScan0, int pStride, int pX, int pY, int pW, int pH)
@@ -43,8 +42,7 @@ void MosseTracker::CopyAndFourierF(const unsigned char *pScan0, int pStride, int
 	memset(&m_F_im[0], 0, m_rectSize * sizeof(float));			// Fill it's imaginary part with 0
 
 	// F -> F*
-
-	m_fft.TransformDirect(m_F_re, m_F_im);
+	FourierDirect(m_F_re, m_F_im);
 }
 
 void MosseTracker::CalcH_noAcc()
@@ -79,4 +77,46 @@ void MosseTracker::CalcH()
 		m_H_re[i] = m_A_re[i] / m_B_re[i];
 		m_H_im[i] = m_A_im[i] / m_B_re[i];
 	}
+}
+
+void MosseTracker::FourierDirect(std::vector<float> &pRe, std::vector<float> &pIm)
+{
+#ifdef MOSSE_USE_FFT_NATIVE
+	m_fft.TransformDirect(pRe, pIm);
+#endif // MOSSE_USE_FFT_NATIVE
+
+#ifdef MOSSE_USE_FFT_FFTW
+	for (int i = 0; i < m_rectSize; ++i)
+	{
+		m_fftwArray[i][0] = pRe[i];
+		m_fftwArray[i][1] = pIm[i];
+	}
+	fftwf_execute(m_fftwPlanDirect);
+	for (int i = 0; i < m_rectSize; ++i)
+	{
+		pRe[i] = m_fftwArray[i][0];
+		pIm[i] = m_fftwArray[i][1];
+	}
+#endif // MOSSE_USE_FFT_FFTW
+}
+
+void MosseTracker::FourierComplement(std::vector<float> &pRe, std::vector<float> &pIm)
+{
+#ifdef MOSSE_USE_FFT_NATIVE
+	m_fft.TransformComplement(pRe, pIm);
+#endif // MOSSE_USE_FFT_NATIVE
+
+#ifdef MOSSE_USE_FFT_FFTW
+	for (int i = 0; i < m_rectSize; ++i)
+	{
+		m_fftwArray[i][0] = pRe[i];
+		m_fftwArray[i][1] = pIm[i];
+	}
+	fftwf_execute(m_fftwPlanComplement);
+	for (int i = 0; i < m_rectSize; ++i)
+	{
+		pRe[i] = m_fftwArray[i][0];
+		pIm[i] = m_fftwArray[i][1];
+	}
+#endif // MOSSE_USE_FFT_FFTW
 }

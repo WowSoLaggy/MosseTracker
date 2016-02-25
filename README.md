@@ -4,10 +4,12 @@
 
 MOSSE tracker used to track a single object on the frame sequence
 
-Algorythm is based on the paper: "Visual Object Tracking using Adaptive Correlation Filters" by David S. Bolme, J. Ross Beveridge, Bruce A. Draper, Yui Man Lui, Computer Science Department, Colorado State University. Fast Fourier Transform algorythm was taken from the freeware source (written by Miroslav Voinarovsky) with insignificant modifications by me.
+Algorythm is based on the paper: "Visual Object Tracking using Adaptive Correlation Filters" by David S. Bolme, J. Ross Beveridge, Bruce A. Draper, Yui Man Lui, Computer Science Department, Colorado State University.
+Fast Fourier Transform algorythm was taken from the freeware source (written by Miroslav Voinarovsky) with insignificant modifications by me.
 
 Compiled via MS Visual Studio 2015. Uses std and Windows.h. Should be modified for Lin-support.
 Uses OpenCV only to output results. The algorythm itself doesn't require OpenCV.
+The usage of fftw can be defined instead of FFT by Miroslav Voinarovsky.
 FPS is calculated via QueryPerformanceCounter.
 
 #### Structure
@@ -29,6 +31,11 @@ FPS is calculated via QueryPerformanceCounter.
   1. Tests
     1. TestFromFile - runs MosseTracker test with the images loaded from files
 	2. TestOneFrame	- runs test with only one frame (and one for the initialization). It processes this frame 5000 times and counts the total FPS
+	
+3. fftw distrib
+  1. fftw3.h
+  2. libfftw3f-3.dll
+  3. libfftw3f-3.lib
 
 
 Anton Egorov, 2016 dohxehapo@gmail.com

@@ -4,7 +4,18 @@
 #define MOSSETRACKER_H
 
 
+// Defines the FFT algorythm. Uncomment the line with the required algorythm
+//#define MOSSE_USE_FFT_NATIVE
+#define MOSSE_USE_FFT_FFTW
+
+
+#ifdef MOSSE_USE_FFT_NATIVE
 #include "Fft.h"
+#endif // MOSSE_USE_FFT_NATIVE
+
+#ifdef MOSSE_USE_FFT_FFTW
+#include "fftw3.h"
+#endif // MOSSE_USE_FFT_FFTW
 
 
 class MosseTracker
@@ -13,10 +24,20 @@ public:
 
 	void Init(const unsigned char *pScan0, int pStride, int pX, int pY, int pW, int pH, float pLearnRate);
 	void OnFrame(const unsigned char *pScan0, int pStride, int &pX, int &pY, int &pW, int &pH);
+	void Dispose();
 
 private:
 
+#ifdef MOSSE_USE_FFT_NATIVE
 	Fft m_fft;
+#endif // MOSSE_USE_FFT_NATIVE
+
+#ifdef MOSSE_USE_FFT_FFTW
+	fftwf_plan m_fftwPlanDirect;
+	fftwf_plan m_fftwPlanComplement;
+	fftwf_complex *m_fftwArray;
+#endif // MOSSE_USE_FFT_FFTW
+
 	int m_rectSize;
 	float m_learnRate;
 	float m_learnRateInv;
@@ -43,6 +64,9 @@ private:
 	void CopyAndFourierF(const unsigned char *pScan0, int pStride, int pX, int pY, int pW, int pH);
 	void CalcH_noAcc();
 	void CalcH();
+
+	void FourierDirect(std::vector<float> &pRe, std::vector<float> &pIm);
+	void FourierComplement(std::vector<float> &pRe, std::vector<float> &pIm);
 };
 
 

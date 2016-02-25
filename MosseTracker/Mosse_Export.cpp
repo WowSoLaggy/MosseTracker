@@ -21,5 +21,6 @@ void Mosse_OnFrame(const unsigned char *pScan0, int pStride, int &pX, int &pY, i
 
 void Mosse_Dispose()
 {
+	g_mosseTracker->Dispose();
 	g_mosseTracker.reset();
 }

@@ -7,8 +7,17 @@ void MosseTracker::Init(const unsigned char *pScan0, int pStride, int pX, int pY
 	// Initialization and memory allocation
 
 	m_rectSize = pW * pH;
+
+#ifdef MOSSE_USE_FFT_NATIVE
 	int logN = (int)(log2(m_rectSize) + 0.5);
 	m_fft.Init(logN);
+#endif // MOSSE_USE_FFT_NATIVE
+
+#ifdef MOSSE_USE_FFT_FFTW
+	m_fftwArray = (fftwf_complex *)fftwf_malloc(sizeof(fftwf_complex) * m_rectSize);
+	m_fftwPlanDirect = fftwf_plan_dft_1d(m_rectSize, m_fftwArray, m_fftwArray, FFTW_FORWARD, FFTW_MEASURE);
+	m_fftwPlanComplement = fftwf_plan_dft_1d(m_rectSize, m_fftwArray, m_fftwArray, FFTW_BACKWARD, FFTW_MEASURE);
+#endif // MOSSE_USE_FFT_FFTW
 
 	m_learnRate = pLearnRate;
 	m_learnRateInv = 1 - m_learnRate;
@@ -49,7 +58,7 @@ void MosseTracker::OnFrame(const unsigned char *pScan0, int pStride, int &pX, in
 	}
 
 	// Complement transform R* -> R
-	m_fft.TransformComplement(m_R_re, m_R_im);
+	FourierComplement(m_R_re, m_R_im);
 
 	// Find the maximum response value
 
@@ -73,4 +82,13 @@ void MosseTracker::OnFrame(const unsigned char *pScan0, int pStride, int &pX, in
 
 	// Accumulate the new image part
 	CalcH();
+}
+
+void MosseTracker::Dispose()
+{
+#ifdef MOSSE_USE_FFT_FFTW
+	fftwf_destroy_plan(m_fftwPlanDirect);
+	fftwf_destroy_plan(m_fftwPlanComplement);
+	fftwf_free(m_fftwArray);
+#endif // MOSSE_USE_FFT_FFTW
 }

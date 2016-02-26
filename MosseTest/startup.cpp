@@ -10,9 +10,9 @@ int main()
 	TestFromFile test;
 	//TestOneFrame test;
 
-	//test.Run("d:\\Work\\MosseTracker\\Video\\dog\\", 8, 133, 100, 64, 64);
-	//test.Run("d:\\Work\\MosseTracker\\Video\\surfing\\", 8, 23, 55, 64, 64);
-	test.Run("d:\\Work\\MosseTracker\\Video\\boris\\", 8, 493, 475, 64, 64);
+	test.Run("..\\Video\\dog\\", ".jpg", 8, 0, 133, 100, 64, 64);
+	//test.Run("..\\Video\\surfing\\", ".jpg", 8, 0, 23, 55, 64, 64);
+	//test.Run("..\\Video\\boris\\", ".jpg", 8, 493, 475, 64, 64);
 
     return 0;
 }

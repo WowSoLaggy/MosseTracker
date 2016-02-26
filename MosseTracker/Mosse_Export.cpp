@@ -24,3 +24,9 @@ void Mosse_Dispose()
 	g_mosseTracker->Dispose();
 	g_mosseTracker.reset();
 }
+
+
+float * Mosse_GetResponse()
+{
+	return g_mosseTracker->GetResponse();
+}

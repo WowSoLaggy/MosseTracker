@@ -50,4 +50,14 @@ MOSSE_API void Mosse_OnFrame(
 MOSSE_API void Mosse_Dispose();
 
 
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// Exported debug functions
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
+// Returns a pointer to the first element of the response matrix.
+// No thread safety, no null-checks
+MOSSE_API float * Mosse_GetResponse();
+
+
 #endif // MOSSEEXPORTS_H

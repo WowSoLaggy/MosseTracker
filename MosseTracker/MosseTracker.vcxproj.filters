@@ -50,5 +50,8 @@
     <ClCompile Include="MosseTracker.cpp">
       <Filter>src\MosseTracker</Filter>
     </ClCompile>
+    <ClCompile Include="MosseTracker_Debug.cpp">
+      <Filter>src\MosseTracker</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

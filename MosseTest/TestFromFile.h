@@ -11,7 +11,7 @@ class TestFromFile
 {
 public:
 
-	void Run(std::string pWorkDir, int pZeros, int pX, int pY, int pW, int pH);
+	void Run(std::string pWorkDir, std::string pFileExt, int pZeros, int pStartFrame, int pX, int pY, int pW, int pH);
 };
 
 

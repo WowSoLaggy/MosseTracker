@@ -26,6 +26,8 @@ public:
 	void OnFrame(const unsigned char *pScan0, int pStride, int &pX, int &pY, int &pW, int &pH);
 	void Dispose();
 
+	float * GetResponse();
+
 private:
 
 #ifdef MOSSE_USE_FFT_NATIVE

@@ -2,9 +2,9 @@
 #include "TestOneFrame.h"
 
 
-void TestOneFrame::Run(std::string pWorkDir, int pZeros, int pX, int pY, int pW, int pH)
+void TestOneFrame::Run(std::string pWorkDir, std::string pFileExt, int pZeros, int pStartFrame, int pX, int pY, int pW, int pH)
 {
-	int curFrame = 0;
+	int curFrame = pStartFrame;
 	std::string curFrameName = "";
 	cv::namedWindow("output");
 	cv::Mat imRgb, imGray;
@@ -24,12 +24,12 @@ void TestOneFrame::Run(std::string pWorkDir, int pZeros, int pX, int pY, int pW,
 	LARGE_INTEGER accTimePrecFreq;
 	QueryPerformanceFrequency(&accTimePrecFreq);
 
-	while (curFrame <= 1)	// only the first (init frame) and the second frame
+	while (curFrame <= pStartFrame + 1)	// only the first (init frame) and the second frame
 	{
 		// Generate new file name
 		curFrameName = std::to_string(curFrame);
 		curFrameName.insert(0, pZeros - curFrameName.length(), '0');
-		curFrameName = std::string(pWorkDir).append(curFrameName).append(".jpg");
+		curFrameName = std::string(pWorkDir).append(curFrameName).append(pFileExt);
 
 		// Read file
 		imRgb = cv::imread(curFrameName);
@@ -37,7 +37,7 @@ void TestOneFrame::Run(std::string pWorkDir, int pZeros, int pX, int pY, int pW,
 		cv::cvtColor(imRgb, imGray, CV_RGB2GRAY);	// Convert to graysacle
 
 		// Call tracker
-		if (curFrame == 0)
+		if (curFrame == pStartFrame)
 			Mosse_Init(imGray.ptr(), (int)imGray.step, rectX, rectY, rectW, rectH, learnRate);
 		else
 		{

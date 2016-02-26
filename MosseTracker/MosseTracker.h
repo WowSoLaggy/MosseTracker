@@ -4,7 +4,7 @@
 #define MOSSETRACKER_H
 
 
-// Defines the FFT algorythm. Uncomment the line with the required algorythm
+// Defines the FFT algorithm. Uncomment the line with the required algorithm
 //#define MOSSE_USE_FFT_NATIVE
 #define MOSSE_USE_FFT_FFTW
 

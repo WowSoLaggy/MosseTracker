@@ -1,8 +1,8 @@
 #include "stdafx.h"
-#include "TestFromFile.h"
+#include "SampleFromFile.h"
 
 
-void TestFromFile::Run(std::string pWorkDir, std::string pFileExt, int pZeros, int pStartFrame, int pX, int pY, int pW, int pH)
+void SampleFromFile::Run(std::string pWorkDir, std::string pFileExt, int pZeros, int pStartFrame, int pX, int pY, int pW, int pH)
 {
 	int curFrame = pStartFrame;
 	std::string curFrameName = "";

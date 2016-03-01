@@ -7,7 +7,7 @@
 #include "Mosse_Export.h"
 
 
-class TestFromFile
+class SampleFromFile
 {
 public:
 

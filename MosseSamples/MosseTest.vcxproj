@@ -23,6 +23,7 @@
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>MosseTest</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>MosseSamples</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -152,9 +153,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="Test4Trackers.h" />
-    <ClInclude Include="TestFromFile.h" />
-    <ClInclude Include="TestOneFrame.h" />
+    <ClInclude Include="Sample4Trackers.h" />
+    <ClInclude Include="SampleFromFile.h" />
+    <ClInclude Include="SampleOneFrame.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="startup.cpp" />
@@ -164,9 +165,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Test4Trackers.cpp" />
-    <ClCompile Include="TestFromFile.cpp" />
-    <ClCompile Include="TestOneFrame.cpp" />
+    <ClCompile Include="Sample4Trackers.cpp" />
+    <ClCompile Include="SampleFromFile.cpp" />
+    <ClCompile Include="SampleOneFrame.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

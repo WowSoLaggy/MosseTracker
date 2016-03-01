@@ -1,8 +1,8 @@
 #include "stdafx.h"
-#include "Test4Trackers.h"
+#include "Sample4Trackers.h"
 
 
-void Test4Trackers::Run(std::string pWorkDir, std::string pFileExt, int pZeros, int pStartFrame, int pX, int pY, int pW, int pH)
+void Sample4Trackers::Run(std::string pWorkDir, std::string pFileExt, int pZeros, int pStartFrame, int pX, int pY, int pW, int pH)
 {
 	int curFrame = pStartFrame;
 	std::string curFrameName = "";

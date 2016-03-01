@@ -31,11 +31,11 @@ Warning: FPS calculated in TestFromFile can be inaccurate. It is better to estim
     2. Fft.cpp
     3. Fft_arrays.h - contains large magic arrays used for FFT calculations
 
-2. MosseTest (exe)
-  1. Tests
-    1. TestFromFile  - runs MosseTracker test with the images loaded from files
-	2. TestOneFrame	 - runs test with only one frame (and one for the initialization). It processes this frame 5000 times and counts the total time
-	3. Test4Trackers - runs test with 4 trackers purely for academic purposes (that is, for entertainment)
+2. MosseSamples (exe)
+  1. Samples
+    1. SamplesFromFile  - runs MosseTracker sample with the images loaded from files
+	2. SamplesOneFrame	- runs sample with only one frame (and one for the initialization). It processes this frame 5000 times and counts the total time
+	3. Samples4Trackers - runs sample with 4 trackers purely for academic purposes (that is, for entertainment)
 	
 3. fftw distrib
   1. fftw3.h

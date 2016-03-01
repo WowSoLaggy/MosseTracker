@@ -1,8 +1,8 @@
 #include "stdafx.h"
-#include "TestOneFrame.h"
+#include "SampleOneFrame.h"
 
 
-void TestOneFrame::Run(std::string pWorkDir, std::string pFileExt, int pZeros, int pStartFrame, int pX, int pY, int pW, int pH)
+void SampleOneFrame::Run(std::string pWorkDir, std::string pFileExt, int pZeros, int pStartFrame, int pX, int pY, int pW, int pH)
 {
 	int curFrame = pStartFrame;
 	std::string curFrameName = "";

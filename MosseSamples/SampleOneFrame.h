@@ -1,13 +1,13 @@
 #pragma once
 
-#ifndef TEST4TRACKERS_H
-#define TEST4TRACKERS_H
+#ifndef TESTONEFRAME_H
+#define TESTONEFRAME_H
 
 
 #include "Mosse_Export.h"
 
 
-class Test4Trackers
+class SampleOneFrame
 {
 public:
 
@@ -15,4 +15,4 @@ public:
 };
 
 
-#endif // TEST4TRACKERS_H
+#endif // TESTONEFRAME_H

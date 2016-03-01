@@ -33,9 +33,10 @@ Warning: FPS calculated in TestFromFile can be inaccurate. It is better to estim
 
 2. MosseSamples (exe)
   1. Samples
-    1. SamplesFromFile  - runs MosseTracker sample with the images loaded from files
-	2. SamplesOneFrame	- runs sample with only one frame (and one for the initialization). It processes this frame 5000 times and counts the total time
-	3. Samples4Trackers - runs sample with 4 trackers purely for academic purposes (that is, for entertainment)
+    1. SampleFromFile  - runs MosseTracker sample with the images loaded from files
+	2. SampleOneFrame  - runs sample with only one frame (and one for the initialization). It processes this frame 5000 times and counts the total time
+	3. Sample4Trackers - runs sample with 4 trackers purely for academic purposes (that is, for entertainment)
+	4. SampleSwarm     - runs sample with a lot of trackers (e.g. 100). New position is taken as the average of their offsets
 	
 3. fftw distrib
   1. fftw3.h

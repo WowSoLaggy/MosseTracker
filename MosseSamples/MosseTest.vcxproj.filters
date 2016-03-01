@@ -13,6 +13,9 @@
     <Filter Include="src\SampleOneFrame">
       <UniqueIdentifier>{f8eb5ef2-e112-4306-8a34-1e70ab325efb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\SampleSwarm">
+      <UniqueIdentifier>{f265972f-2875-4200-a719-ccdd6c04862a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -26,6 +29,9 @@
     </ClInclude>
     <ClInclude Include="SampleOneFrame.h">
       <Filter>src\SampleOneFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="SampleSwarm.h">
+      <Filter>src\SampleSwarm</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -43,6 +49,9 @@
     </ClCompile>
     <ClCompile Include="SampleOneFrame.cpp">
       <Filter>src\SampleOneFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="SampleSwarm.cpp">
+      <Filter>src\SampleSwarm</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

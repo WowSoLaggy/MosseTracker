@@ -152,12 +152,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SampleSwarm.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Sample4Trackers.h" />
     <ClInclude Include="SampleFromFile.h" />
     <ClInclude Include="SampleOneFrame.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SampleSwarm.cpp" />
     <ClCompile Include="startup.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

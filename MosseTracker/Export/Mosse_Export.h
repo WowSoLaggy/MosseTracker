@@ -29,8 +29,8 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 
-// Initializes the Mosse Tracker by the given image
-MOSSE_API void Mosse_Init(
+// Initializes the Mosse Tracker by the given image. Returns ID of the new tracker
+MOSSE_API int Mosse_Init(
 	const unsigned char *pScan0,	// [in] Pointer to the first element of the image
 	int pStride,					// [in] Image stride
 	int pX, int pY, int pW, int pH,	// [in] Initial rect
@@ -40,14 +40,15 @@ MOSSE_API void Mosse_Init(
 
 // Processes the given image and moves the given rectangle to the new position
 MOSSE_API void Mosse_OnFrame(
+	int pTrackerId,						// [in]  ID of the Mosse Tracker to process the given image with
 	const unsigned char *pScan0,		// [in]  Pointer to the first element of the image
 	int pStride,						// [in]  Image stride
 	int &pX, int &pY, int &pW, int &pH	// [out] Rectangle of interest to track object in, returns the new object position found by the Mosse Tracker
 	);
 
 
-// Disposes the Mosse Tracker and releases all the memory associated with it
-MOSSE_API void Mosse_Dispose();
+// Disposes the Mosse Tracker with the given ID and releases all the memory associated with it
+MOSSE_API void Mosse_Dispose(int pTrackerId);
 
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -55,9 +56,9 @@ MOSSE_API void Mosse_Dispose();
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 
-// Returns a pointer to the first element of the response matrix.
+// Returns a pointer to the first element of the response matrix of the Tracker with the given ID.
 // No thread safety, no null-checks
-MOSSE_API float * Mosse_GetResponse();
+MOSSE_API float * Mosse_GetResponse(int pTrackerId);
 
 
 #endif // MOSSEEXPORTS_H

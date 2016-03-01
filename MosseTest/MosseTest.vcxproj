@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Test4Trackers.h" />
     <ClInclude Include="TestFromFile.h" />
     <ClInclude Include="TestOneFrame.h" />
   </ItemGroup>
@@ -163,6 +164,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Test4Trackers.cpp" />
     <ClCompile Include="TestFromFile.cpp" />
     <ClCompile Include="TestOneFrame.cpp" />
   </ItemGroup>

@@ -10,6 +10,9 @@
     <Filter Include="src\TestOneFrame">
       <UniqueIdentifier>{f8eb5ef2-e112-4306-8a34-1e70ab325efb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Test4Trackers">
+      <UniqueIdentifier>{e095de59-1d22-4292-af04-89f0bf8454d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -20,6 +23,9 @@
     </ClInclude>
     <ClInclude Include="TestOneFrame.h">
       <Filter>src\TestOneFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="Test4Trackers.h">
+      <Filter>src\Test4Trackers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -34,6 +40,9 @@
     </ClCompile>
     <ClCompile Include="TestOneFrame.cpp">
       <Filter>src\TestOneFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="Test4Trackers.cpp">
+      <Filter>src\Test4Trackers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

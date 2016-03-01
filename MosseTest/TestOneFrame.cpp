@@ -44,7 +44,7 @@ void TestOneFrame::Run(std::string pWorkDir, std::string pFileExt, int pZeros, i
 			QueryPerformanceCounter(&accTimePrecStart);
 
 			for (int i = 0; i < numToCall; i++)
-				Mosse_OnFrame(imGray.ptr(), (int)imGray.step, rectX, rectY, rectW, rectH);
+				Mosse_OnFrame(0, imGray.ptr(), (int)imGray.step, rectX, rectY, rectW, rectH);
 
 			// Count FPS
 			QueryPerformanceCounter(&accTimePrecEnd);

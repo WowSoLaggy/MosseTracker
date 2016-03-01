@@ -25,7 +25,7 @@ Warning: FPS calculated in TestFromFile can be inaccurate. It is better to estim
 	4. MosseTracker_Debug.cpp - contains some debug functions
   2. Export section
     1. Mosse_Export.h   - contains declaration of exported functions
-    2. Mosse_Export.cpp - contains definition of exported functions, controls MosseTracker object lifetime
+    2. Mosse_Export.cpp - contains definition of exported functions, controls MosseTracker objects lifetime
   3. FFT - Fast Fourier Transform
     1. Fft.h
     2. Fft.cpp
@@ -33,8 +33,9 @@ Warning: FPS calculated in TestFromFile can be inaccurate. It is better to estim
 
 2. MosseTest (exe)
   1. Tests
-    1. TestFromFile - runs MosseTracker test with the images loaded from files
-	2. TestOneFrame	- runs test with only one frame (and one for the initialization). It processes this frame 5000 times and counts the total time
+    1. TestFromFile  - runs MosseTracker test with the images loaded from files
+	2. TestOneFrame	 - runs test with only one frame (and one for the initialization). It processes this frame 5000 times and counts the total time
+	3. Test4Trackers - runs test with 4 trackers purely for academic purposes (that is, for entertainment)
 	
 3. fftw distrib
   1. fftw3.h

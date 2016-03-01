@@ -7,15 +7,6 @@
 #include "Mosse_Export.h"
 
 
-struct Rect
-{
-	int X;
-	int Y;
-	int W;
-	int H;
-};
-
-
 class SampleSwarm
 {
 public:
@@ -41,7 +32,7 @@ private:
 	float m_scaleY;
 	float m_scale;
 
-	Rect *m_rects;
+	cv::Rect *m_rects;
 
 	void ArrangeRects();
 	void GetOffsets();

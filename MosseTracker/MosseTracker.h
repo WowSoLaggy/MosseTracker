@@ -24,6 +24,7 @@ public:
 
 	void Init(const unsigned char *pScan0, int pStride, int pX, int pY, int pW, int pH, float pLearnRate);
 	void OnFrame(const unsigned char *pScan0, int pStride, int &pX, int &pY, int &pW, int &pH);
+	void Train(const unsigned char *pScan0, int pStride, int pX, int pY, int pW, int pH);
 	void Dispose();
 
 	float * GetResponse();

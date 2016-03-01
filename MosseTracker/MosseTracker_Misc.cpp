@@ -6,8 +6,12 @@ void MosseTracker::GenerateAndFourierG(int pW, int pH)
 {
 	// Generate response kernel G
 
-	const unsigned int kernelSize = 5;
-	float tmp[kernelSize] = { 1.0, 4.0, 6.0, 4.0, 1.0 };
+	/*const unsigned int kernelSize = 5;
+	float tmp[kernelSize] = { 1.0f, 4.0f, 6.0f, 4.0f, 1.0f };*/
+	/*const unsigned int kernelSize = 7;
+	float tmp[kernelSize] = { 1.0f, 6.0f, 15.0f, 20.0f, 15.0f, 6.0f, 1.0f };*/
+	const unsigned int kernelSize = 9;
+	float tmp[kernelSize] = { 1.0f, 8.0f, 28.0f, 56.0f, 70.0f, 56.0f, 28.0f, 8.0f, 1.0f };
 	unsigned int xStart = (pW - kernelSize) / 2;
 	unsigned int yStart = (pH - kernelSize) / 2;
 	float sum = 0;

@@ -17,7 +17,7 @@ void SampleSwarm::Run(std::string pWorkDir, std::string pFileExt, int pZeros, in
 	m_rectStepY = (float)pRectStep;
 	m_rectW = pRectW;
 	m_rectH = pRectH;
-	m_rects = new Rect[pRectNum * pRectNum];
+	m_rects = new cv::Rect[pRectNum * pRectNum];
 	m_centerX = (int)(m_left + (m_rectNum - 1) * m_rectStepX / 2 + m_rectW / 2);
 	m_centerY = (int)(m_top + (m_rectNum - 1) * m_rectStepY / 2 + m_rectH / 2);
 	m_scaleX = 1;
@@ -56,14 +56,14 @@ void SampleSwarm::Run(std::string pWorkDir, std::string pFileExt, int pZeros, in
 		if (curFrame == pStartFrame)
 		{
 			for (int i = 0; i < pRectNum * pRectNum; ++i)
-				Mosse_Init(imGray.ptr(), (int)imGray.step, m_rects[i].X, m_rects[i].Y, m_rects[i].W, m_rects[i].H, learnRate);
+				Mosse_Init(imGray.ptr(), (int)imGray.step, m_rects[i].x, m_rects[i].y, m_rects[i].width, m_rects[i].height, learnRate);
 		}
 		else
 		{
 			QueryPerformanceCounter(&accTimePrecStart);
 
 			for (int i = 0; i < pRectNum * pRectNum; ++i)
-				Mosse_OnFrame(i, imGray.ptr(), (int)imGray.step, m_rects[i].X, m_rects[i].Y, m_rects[i].W, m_rects[i].H);
+				Mosse_OnFrame(i, imGray.ptr(), (int)imGray.step, m_rects[i].x, m_rects[i].y, m_rects[i].width, m_rects[i].height);
 
 			// Estimate new position
 			GetOffsets();
@@ -77,6 +77,10 @@ void SampleSwarm::Run(std::string pWorkDir, std::string pFileExt, int pZeros, in
 
 			// Set rects to the new position
 			ArrangeRects();
+
+			// Learn new rects
+			for (int i = 0; i < pRectNum * pRectNum; ++i)
+				Mosse_Train(i, imGray.ptr(), (int)imGray.step, m_rects[i].x, m_rects[i].y, m_rects[i].width, m_rects[i].height);
 
 			// Count FPS
 			QueryPerformanceCounter(&accTimePrecEnd);
@@ -95,8 +99,9 @@ void SampleSwarm::Run(std::string pWorkDir, std::string pFileExt, int pZeros, in
 		}
 
 		// Draw result
-		for (int i = 0; i < pRectNum * pRectNum; ++i)
-			cv::rectangle(imGray, cv::Rect(m_rects[i].X, m_rects[i].Y, m_rects[i].W, m_rects[i].H), 255, 1);
+		/*for (int i = 0; i < pRectNum * pRectNum; ++i)
+			cv::rectangle(imGray, m_rects[i], 255);//*/ // To draw each rect individually
+		cv::rectangle(imGray, cv::Rect(m_left, m_top, (m_centerX - m_left) * 2, (m_centerY - m_top) * 2), 255);
 
 		// Show output
 		cv::imshow("output", imGray);
@@ -114,11 +119,11 @@ void SampleSwarm::ArrangeRects()
 	{
 		for (int x = 0; x < m_rectNum; ++x)
 		{
-			m_rects[x + y * m_rectNum].X = (int)(m_left + m_rectStepX * x);
-			m_rects[x + y * m_rectNum].Y = (int)(m_top + m_rectStepY * y);
+			m_rects[x + y * m_rectNum].x = (int)(m_left + m_rectStepX * x);
+			m_rects[x + y * m_rectNum].y = (int)(m_top + m_rectStepY * y);
 
-			m_rects[x + y * m_rectNum].W = m_rectW;
-			m_rects[x + y * m_rectNum].H = m_rectH;
+			m_rects[x + y * m_rectNum].width = m_rectW;
+			m_rects[x + y * m_rectNum].height = m_rectH;
 		}
 	}
 }
@@ -132,8 +137,8 @@ void SampleSwarm::GetOffsets()
 	{
 		for (int x = 0; x < m_rectNum; ++x)
 		{
-			m_dx += (int)(m_rects[x + y * m_rectNum].X - (m_left + m_rectStepX * x));
-			m_dy += (int)(m_rects[x + y * m_rectNum].Y - (m_top + m_rectStepY * y));
+			m_dx += (int)(m_rects[x + y * m_rectNum].x - (m_left + m_rectStepX * x));
+			m_dy += (int)(m_rects[x + y * m_rectNum].y - (m_top + m_rectStepY * y));
 		}
 	}
 
@@ -150,8 +155,8 @@ void SampleSwarm::GetScale()
 	{
 		for (int x = 0; x < m_rectNum; ++x)
 		{
-			m_scaleX += (float)(m_rects[x + y * m_rectNum].X - m_centerX) / (m_left + m_rectStepX * x - m_centerX) - 1;
-			m_scaleY += (float)(m_rects[x + y * m_rectNum].Y - m_centerY) / (m_top + m_rectStepY * y - m_centerY) - 1;
+			m_scaleX += (float)(m_rects[x + y * m_rectNum].x - m_centerX) / (m_left + m_rectStepX * x - m_centerX) - 1;
+			m_scaleY += (float)(m_rects[x + y * m_rectNum].y - m_centerY) / (m_top + m_rectStepY * y - m_centerY) - 1;
 		}
 	}
 

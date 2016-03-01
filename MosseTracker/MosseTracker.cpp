@@ -2,6 +2,11 @@
 #include "MosseTracker.h"
 
 
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// Init
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
 void MosseTracker::Init(const unsigned char *pScan0, int pStride, int pX, int pY, int pW, int pH, float pLearnRate)
 {
 	// Initialization and memory allocation
@@ -45,6 +50,12 @@ void MosseTracker::Init(const unsigned char *pScan0, int pStride, int pX, int pY
 	CalcH_noAcc();
 }
 
+
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// OnFrame
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
 void MosseTracker::OnFrame(const unsigned char *pScan0, int pStride, int &pX, int &pY, int &pW, int &pH)
 {
 	// Copy F, transform F -> F*
@@ -83,6 +94,27 @@ void MosseTracker::OnFrame(const unsigned char *pScan0, int pStride, int &pX, in
 	// Accumulate the new image part
 	CalcH();
 }
+
+
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// Train
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
+void MosseTracker::Train(const unsigned char *pScan0, int pStride, int pX, int pY, int pW, int pH)
+{
+	// Copy F, transform F -> F*
+	CopyAndFourierF(pScan0, pStride, pX, pY, pW, pH);
+
+	// Accumulate the new image part
+	CalcH();
+}
+
+
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// Dispose
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 
 void MosseTracker::Dispose()
 {

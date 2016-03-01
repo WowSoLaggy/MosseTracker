@@ -40,6 +40,10 @@ void Mosse_Dispose(int pTrackerId)
 	g_mosseTrackers[pTrackerId] = nullptr;
 }
 
+void Mosse_Train(int pTrackerId, const unsigned char *pScan0, int pStride, int pX, int pY, int pW, int pH)
+{
+}
+
 
 float * Mosse_GetResponse(int pTrackerId)
 {

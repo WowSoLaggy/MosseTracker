@@ -25,16 +25,16 @@
 
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-// Exported functions
+// Exported functions declaration
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 
 // Initializes the Mosse Tracker by the given image. Returns ID of the new tracker
 MOSSE_API int Mosse_Init(
-	const unsigned char *pScan0,	// [in] Pointer to the first element of the image
-	int pStride,					// [in] Image stride
-	int pX, int pY, int pW, int pH,	// [in] Initial rect
-	float pLearnRate = 0.08f		// [in] The Mosse Tracker learning rate. Read the paper for more information
+	const unsigned char *pScan0,		// [in] Pointer to the first element of the image
+	int pStride,						// [in] Image stride
+	int pX, int pY, int pW, int pH,		// [in] Initial rect
+	float pLearnRate = 0.08f			// [in] The Mosse Tracker learning rate. Read the paper for more information
 	);
 
 
@@ -47,12 +47,21 @@ MOSSE_API void Mosse_OnFrame(
 	);
 
 
+// Forces the Mosse Tracker with the given ID to accumulate the new image part to the filter. Tracking isn't performed
+MOSSE_API void Mosse_Train(
+	int pTrackerId,						// [in]  ID of the Mosse Tracker to process the given image with
+	const unsigned char *pScan0,		// [in]  Pointer to the first element of the image
+	int pStride,						// [in]  Image stride
+	int pX, int pY, int pW, int pH		// [out] Rectangle of interest to track object in, returns the new object position found by the Mosse Tracker
+	);
+
+
 // Disposes the Mosse Tracker with the given ID and releases all the memory associated with it
 MOSSE_API void Mosse_Dispose(int pTrackerId);
 
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-// Exported debug functions
+// Exported debug functions declaration
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 

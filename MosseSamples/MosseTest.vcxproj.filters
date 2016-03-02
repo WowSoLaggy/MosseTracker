@@ -4,9 +4,6 @@
     <Filter Include="src">
       <UniqueIdentifier>{466263d8-d538-45fd-a8a3-2fdff2c03b40}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Sample4Trackers">
-      <UniqueIdentifier>{e095de59-1d22-4292-af04-89f0bf8454d5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\SampleFromFile">
       <UniqueIdentifier>{9e50aab4-e8dc-4b2a-8b2c-e1ab38208e93}</UniqueIdentifier>
     </Filter>
@@ -16,13 +13,13 @@
     <Filter Include="src\SampleSwarm">
       <UniqueIdentifier>{f265972f-2875-4200-a719-ccdd6c04862a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\SampleManyTrackers">
+      <UniqueIdentifier>{e095de59-1d22-4292-af04-89f0bf8454d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
       <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="Sample4Trackers.h">
-      <Filter>src\Sample4Trackers</Filter>
     </ClInclude>
     <ClInclude Include="SampleFromFile.h">
       <Filter>src\SampleFromFile</Filter>
@@ -33,6 +30,9 @@
     <ClInclude Include="SampleSwarm.h">
       <Filter>src\SampleSwarm</Filter>
     </ClInclude>
+    <ClInclude Include="SampleManyTrackers.h">
+      <Filter>src\SampleManyTrackers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -40,9 +40,6 @@
     </ClCompile>
     <ClCompile Include="startup.cpp">
       <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="Sample4Trackers.cpp">
-      <Filter>src\Sample4Trackers</Filter>
     </ClCompile>
     <ClCompile Include="SampleFromFile.cpp">
       <Filter>src\SampleFromFile</Filter>
@@ -52,6 +49,9 @@
     </ClCompile>
     <ClCompile Include="SampleSwarm.cpp">
       <Filter>src\SampleSwarm</Filter>
+    </ClCompile>
+    <ClCompile Include="SampleManyTrackers.cpp">
+      <Filter>src\SampleManyTrackers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -65,9 +65,14 @@ MOSSE_API void Mosse_Dispose(int pTrackerId);
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 
-// Returns a pointer to the first element of the response matrix of the Tracker with the given ID.
+// Returns a pointer to the first element of the response matrix (real part) of the Tracker with the given ID.
 // No thread safety, no null-checks
 MOSSE_API float * Mosse_GetResponse(int pTrackerId);
+
+
+// Returns a pointer to the first element of the filter matrix (real part) of the Tracker with the given ID.
+// No thread safety, no null-checks
+MOSSE_API float * Mosse_GetFilter(int pTrackerId);
 
 
 #endif // MOSSEEXPORTS_H

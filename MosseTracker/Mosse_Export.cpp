@@ -42,10 +42,16 @@ void Mosse_Dispose(int pTrackerId)
 
 void Mosse_Train(int pTrackerId, const unsigned char *pScan0, int pStride, int pX, int pY, int pW, int pH)
 {
+	g_mosseTrackers[pTrackerId]->Train(pScan0, pStride, pX, pY, pW, pH);
 }
 
 
 float * Mosse_GetResponse(int pTrackerId)
 {
 	return g_mosseTrackers[pTrackerId]->GetResponse();
+}
+
+float * Mosse_GetFilter(int pTrackerId)
+{
+	return g_mosseTrackers[pTrackerId]->GetFilter();
 }

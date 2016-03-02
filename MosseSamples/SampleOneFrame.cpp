@@ -15,7 +15,7 @@ void SampleOneFrame::Run(std::string pWorkDir, std::string pFileExt, int pZeros,
 	int rectH = pH;
 
 	float learnRate = 0.08f;	// The Mosse Tracker learning rate. Read the paper for more information
-	int numToCall = 5000;
+	int numToCall = 10000;
 
 	// For FPS counting
 	double dt = 0;

@@ -5,8 +5,14 @@
 void SampleFromFile::Run(std::string pWorkDir, std::string pFileExt, int pZeros, int pStartFrame, int pX, int pY, int pW, int pH)
 {
 	int curFrame = pStartFrame;
+	int trackerId;
 	std::string curFrameName = "";
 	cv::namedWindow("output");
+	cv::namedWindow("filter");
+	cv::namedWindow("response");
+	cv::moveWindow("output", 600, 300);
+	cv::moveWindow("filter", 600, 200);
+	cv::moveWindow("response", 700, 200);
 	cv::Mat imRgb, imGray;
 
 	int rectX = pX;
@@ -26,6 +32,10 @@ void SampleFromFile::Run(std::string pWorkDir, std::string pFileExt, int pZeros,
 	LARGE_INTEGER accTimePrecFreq;
 	QueryPerformanceFrequency(&accTimePrecFreq);
 
+	// To output
+	cv::Mat imH = cv::Mat(pW, pH, cv::DataType<unsigned char>::type);
+	cv::Mat imR = cv::Mat(pW, pH, cv::DataType<unsigned char>::type);
+
 	while (true)
 	{
 		// Generate new file name
@@ -40,12 +50,12 @@ void SampleFromFile::Run(std::string pWorkDir, std::string pFileExt, int pZeros,
 
 		// Call tracker
 		if (curFrame == pStartFrame)
-			Mosse_Init(imGray.ptr(), (int)imGray.step, rectX, rectY, rectW, rectH, learnRate);
+			trackerId = Mosse_Init(imGray.ptr(), (int)imGray.step, rectX, rectY, rectW, rectH, learnRate);
 		else
 		{
 			QueryPerformanceCounter(&accTimePrecStart);
 
-			Mosse_OnFrame(0, imGray.ptr(), (int)imGray.step, rectX, rectY, rectW, rectH);
+			Mosse_OnFrame(trackerId, imGray.ptr(), (int)imGray.step, rectX, rectY, rectW, rectH);
 
 			// Count FPS
 			QueryPerformanceCounter(&accTimePrecEnd);
@@ -65,9 +75,41 @@ void SampleFromFile::Run(std::string pWorkDir, std::string pFileExt, int pZeros,
 		// Draw result
 		cv::rectangle(imGray, cv::Rect(rectX, rectY, rectW, rectH), cv::Scalar(255, 255, 255), 1);
 
+		// Debug output
+		float *ptrH = Mosse_GetFilter(trackerId);
+		float minH = *ptrH;
+		float maxH = *ptrH;
+		for (int i = 1; i < rectW * rectH; ++i)
+		{
+			if (ptrH[i] > maxH)
+				maxH = ptrH[i];
+			if (ptrH[i] < minH)
+				minH = ptrH[i];
+		}
+		for (int i = 1; i < rectW * rectH; ++i)
+			imH.data[i] = (unsigned char)((ptrH[i] - minH) / (maxH - minH) * 255);
+		cv::imshow("filter", imH);
+		// Debug
+		float *ptrR = Mosse_GetResponse(trackerId);
+		float minR = *ptrR;
+		float maxR = *ptrR;
+		for (int i = 1; i < rectW * rectH; ++i)
+		{
+			if (ptrR[i] > maxR)
+				maxR = ptrR[i];
+			if (ptrR[i] < minR)
+				minR = ptrR[i];
+		}
+		for (int i = 1; i < rectW * rectH; ++i)
+			imR.data[i] = (unsigned char)((ptrR[i] - minR) / (maxR - minR) * 255);
+		cv::imshow("response", imR);
+
 		// Show output
 		cv::imshow("output", imGray);
-		cv::waitKey(1);
+		if (curFrame == 100)
+			cv::waitKey(3000);
+		else
+			cv::waitKey(1);
 		++curFrame;
 	}
 

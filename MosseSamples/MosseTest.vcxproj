@@ -154,7 +154,7 @@
   <ItemGroup>
     <ClInclude Include="SampleSwarm.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="Sample4Trackers.h" />
+    <ClInclude Include="SampleManyTrackers.h" />
     <ClInclude Include="SampleFromFile.h" />
     <ClInclude Include="SampleOneFrame.h" />
   </ItemGroup>
@@ -167,7 +167,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Sample4Trackers.cpp" />
+    <ClCompile Include="SampleManyTrackers.cpp" />
     <ClCompile Include="SampleFromFile.cpp" />
     <ClCompile Include="SampleOneFrame.cpp" />
   </ItemGroup>

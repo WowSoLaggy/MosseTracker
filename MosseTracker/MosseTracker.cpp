@@ -88,11 +88,8 @@ void MosseTracker::OnFrame(const unsigned char *pScan0, int pStride, int &pX, in
 	pX += (maxI % pW) - pW / 2 + 1;
 	pY += (maxI / pW) - pH / 2 + 1;
 
-	// Process the new image part
-	CopyAndFourierF(pScan0, pStride, pX, pY, pW, pH);
-
-	// Accumulate the new image part
-	CalcH();
+	// Train with the new image part
+	Train(pScan0, pStride, pX, pY, pW, pH);
 }
 
 

@@ -28,6 +28,7 @@ public:
 	void Dispose();
 
 	float * GetResponse();
+	float * GetFilter();
 
 private:
 
@@ -45,19 +46,19 @@ private:
 	float m_learnRate;
 	float m_learnRateInv;
 
-	std::vector<float> m_G_re;
+	std::vector<float> m_G_re;		// Gauss (const)
 	std::vector<float> m_G_im;
 
-	std::vector<float> m_F_re;
+	std::vector<float> m_F_re;		// Input
 	std::vector<float> m_F_im;
 
-	std::vector<float> m_A_re;
+	std::vector<float> m_A_re;		// Temp matr for calculations
 	std::vector<float> m_A_im;
 
-	std::vector<float> m_B_re;
+	std::vector<float> m_B_re;		// Temp matr for calculations
 	//std::vector<float> m_B_im;	// Not used because will always be zero-filled
 
-	std::vector<float> m_H_re;
+	std::vector<float> m_H_re;		// Filter
 	std::vector<float> m_H_im;
 
 	std::vector<float> m_R_re;		// Response

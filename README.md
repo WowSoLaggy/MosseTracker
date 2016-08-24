@@ -45,5 +45,6 @@ Warning: FPS calculated in TestFromFile can be inaccurate. It is better to estim
   
 4. Test image sequences
 
-
-Anton Egorov, 2016 dohxehapo@gmail.com
+<br>
+Anton Egorov, 2016<br>
+dohxehapo@gmail.com
